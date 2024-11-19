@@ -1,4 +1,4 @@
-server_send_timestamp,server_recv_timestamp
+Tipo,server_send_timestamp,server_recv_timestamp
 TCP,1732011476.3491545,1732011476.3449302
 TCP,1732011476.4175372,1732011476.413247
 TCP,1732011476.4775515,1732011476.4731932
