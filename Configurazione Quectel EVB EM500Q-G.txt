@@ -1,0 +1,81 @@
+Configurazione Quectel EVB EM500Q-GL:
+
+Dopo aver installato i driver contenuti nella chiavetta USB sul dispositivo su cui si vuole connettere la scheda, collegare tramite il cavo USB C (quello che sta in mezzo alle due porte USB) e connettersi alla scheda tramite terminale (es. QCOM). 
+Per verificare a quale COM ci si debba connettere, controllare nella gestione dei dispositivi a quale COM corrisponde l'invio di AT commands. 
+Dopo aver selezionato la porta corretta e aver stabilito la connessione, verificare:
+
+1. ATI: permette di avere una descrizione del modello del dispositivo (comodo per verificare se funziona correttamente la comunicazione)
+
+2. AT+CFUN?: permette di verificare se il dispositivo è in funzione o nello stato di IDLE (acceso ma senza alimentazione della scheda di 	     comunicazione)
+
+3. AT+CPIN?: permette di verificare lo stato di inserimento della scheda SIM
+
+4. AT+QENG="servingcell": permette di verificare a quale cella è appoggiato attualmente il dispositivo
+
+5. AT+CGREG?: permette di verificare lo stato di registrazione del dispositivo sulla rete
+
+6. AT+CGDCONT?: permette di verificare gli access point configurati nel dispositivo
+
+7. AT+CGDCONT=1,"IP","oai" -> per configurare l'APN necessario al collegamento sulla rete Firecell 5G
+
+8. AT+CGACT=1,1 -> per attivare la configurazione del contesto appena specificato
+
+9. Se lo si vuole utilizzare come modem: -> cfun=1,1: permette di attivarlo e riavviarlo in modo che poi possa essere utilizzato per la connessione
+
+A questo punto il dispositivo dovrebbe essere in grado di connettersi correttamente alla rete. Se ciò non accade:
+
+1. Verificare che la SIM sia registrata
+
+2. Verificare che il contesto (APN) specificata sia corretta
+
+3. Verificare AT+QCFG="usbnet" deve essere 0. In caso contrario:
+
+  	-> AT+QCFG="usbnet",0
+4. Riavviare il Core Network Firecell e riavviare la SDR, potrebbero essere rimasti in memoria se spenti non correttamente in precedenza e quindi dare un problema di "canale di trasmissione già occupato o interrotto". 
+
+Per verificare le interfacce di rete su PC windows, comando:
+
+	-> netsh interface ip show config
+
+Problema rilevato durante il collegamento di troppi nodi sulla rete, il sistema non riesce a gestire e probabilmente la radio va in errore e si arresta. 
+
+__________________________________________________________________________________________________________________________________________
+
+18/11/2024: Test di connessione dispositivi UE
+
+Rilevati numerosi problemi dovuti allo spegnimento della SDR alla registrazione di 5 dispositivi. Probabilmente qualche errore interno porta allo spegnimento della radio. Inoltre dal PC con l'HUB USB utilizzato si è in grado di rilevare solamente 3 reti distinte. Anche alimentando i moduli distintamente. Pertanto i test verranno eseguiti utilizzando da 1 a 3 nodi di rete per generare traffico e 1 nodo di rete che permette di eseguire i test.
+Il computer utilizzato per generare i vari nodi di rete è il personal computer MSI con windows 11 in quanto il computer con windows 7 non permetteva l'utilizzo di più dispositivi e inoltre non era possibile configurare la rete mobile ma bisognava utilizzare la configurazione tramite router. Mentre nel computer attualmente utilizzato è stato connesso con ogni scheda attraverso la rete mobile.
+
+Opzioni di test:
+Connessione TCP con utilizzo di server NTP tra il client e il server realizzati in python.
+Condizioni di traffico:
+
+0: nessun traffico interferente
+1: 1 nodo di rete crea traffico interferente tramite iperf3 con un bit-rate target di 10 Mbps
+2: 2 nodo di rete crea traffico interferente tramite iperf3 con un bit-rate target di 10 Mbps ciascuno
+3: 3 nodo di rete crea traffico interferente tramite iperf3 con un bit-rate target di 10 Mbps ciascuno
+
+I server iperf3 sono stati realizzati sull'IP del CN del Firecell 5G utilizzando le port:
+5201 6201 7201
+
+Ora prova del collegamento dei vari moduli tramite monitoraggio con tshark e docker stats
+
+--> comando: while true; do docker stats --no-stream >> utilizzo_container.log; sleep 5; done
+
+--> tshark: tshark -i enp5s0 -w cattura_rete.pcapS
+____________________________________________________________________________________________________________________
+
+Test 19/11/2024
+
+I test condotti nella giornata di ieri hanno avuto un problema nel salvataggio dei timestamp lato client dovuto ad un problema dello script python. Ora il problema è stato risolto.
+Opzioni di test:
+Connessione TCP con utilizzo di server NTP tra il client e il server realizzati in python.
+Condizioni di traffico:
+Essendo che 10 Mbps non sono supportati dalla rete in quanto una volta raggiunta la saturazione del canalare (circa 15 Mbps) non riesce a fare altro, il traffico target per questi test è di 1 Mbps.
+0: nessun traffico interferente 
+1: 1 nodo di rete crea traffico interferente tramite iperf3 con un bit-rate target di 1 Mbps
+2: 2 nodo di rete crea traffico interferente tramite iperf3 con un bit-rate target di 1 Mbps ciascuno
+3: 3 nodo di rete crea traffico interferente tramite iperf3 con un bit-rate target di 1 Mbps ciascuno
+
+Per ogni condizione fatti circa 4000 test.
+

@@ -1,0 +1,6 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\numberline {1}Paper review}{2}{}%
+\contentsline {chapter}{\numberline {2}Research Project Description}{3}{}%
+\contentsline {section}{\numberline {2.1}Expected activity scheduling}{5}{}%
+\contentsline {chapter}{\numberline {3}Bibliographical References}{6}{}%
+\contentsline {chapter}{\numberline {4}Sitography}{7}{}%

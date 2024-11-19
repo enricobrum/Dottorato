@@ -1,0 +1,20 @@
+The primary objective of this research project is to analyze and evaluate the performance characteristics of a 5G network infrastructure deployed in a controlled laboratory environment. This analysis aims to enhance the understanding of the novel service-based architecture of 5G, which significantly differs from previous generations like 4G, by leveraging tools such as the Firecell Labkit, various User Equipment (UE) including smartphones and Quectel EVB, and other software tools like Wireshark and iPerf.
+The Firecell Labkit is used to set up a private 5G network, providing the essential infrastructure for deploying and testing 5G connectivity within the laboratory environment. It support the advanced features and capabilities of 5G, such as network slicing and ultra-reliable low-latency communication (URLLC). The Quectel EVB is a development board with a Quectel RM500-GL module to test and analyze 5G New Radio (NR) capabilities. Through the connection of this module via USB is possible connect any kind of devices to the deployed 5G network. In this project, the module will be used to connect a personal computer, which will run some application needed for testing the network, and a Raspberry Pi. This last one is a versatile single-board computer used to simulate various network scenarios, run analysis software, and serve as an additional network node for testing purpose. Wirershark is a network protocol analyzer used to capure and inspect traffic flowing through the 5G network. It aids in diagnosing network issues, analyzing performance, and understanding the behavior of 5G-specific protocols. iPerf is a network performance measurement tool used to generate traffic and measure the bandwith, throughput, and quality of the 5G connection under different conditions. 
+This research project is critical for advancing the understanding of 5G technology and its infrastructure, which significantly differs from 4G due to its service-based architecture. The service-based approach in 5G enables numerous capabilities such as:
+
+-Network Slicing: allow multiplle virtual network to be created on a shared physical infrastructure, each tailored to specific applications or services.
+
+-Ultra-Reliable Low-Latency Communication (URLLC): provide highly reliable communication with minimal latency, essential for application like autonomous driving and industrial automation.
+ 
+-Enhanced Mobile Broadband (eMBB): supports high data rates and improved capacity, catering to bandwidth-intensive applications like streaming and virtual reality. 
+
+-Massive Machine-Type Communication (mMTC): connects a vast number of IoT devices, supporting smart city and smart home applications. 
+
+Understanding these new capabilities is essential for optimizing network performance and addressing the challenges that come with 5G, such as increased complexity in network management and the need for robust security measures. This study aims to provide detailed insights into these aspects, contributing to the effective deployment and management of 5G networks. This research offers critical perspective on the performance and optimization of 5G networks:
+
+-Enhanced understanding of 5G performance metrics: detailed insights into key metrics such as data rates latency, jitter, packet loss, and error rates. 
+-Service-based architecture implications: understanding the impact of network slicing URLLC, eMBB, mMTC on network performance. 
+-Protocol Behavior Analysis: insights into 5G-specific protocol behaviors, aiding in optimization and troubleshooting.
+-Optimization strategies: development of strategies for Optimizing 5G network deployment and management.
+-Security and reliability insights: understanding security challenges and enusring the reliability of 5G networks.
+

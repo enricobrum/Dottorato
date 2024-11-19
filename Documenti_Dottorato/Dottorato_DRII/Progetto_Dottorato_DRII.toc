@@ -1,0 +1,7 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\numberline {1}Paper review}{2}{}%
+\contentsline {chapter}{\numberline {2}Motivations and Objectives}{3}{}%
+\contentsline {chapter}{\numberline {3}Research Project Description}{4}{}%
+\contentsline {chapter}{\numberline {4}Experimental Setup and Methodology}{6}{}%
+\contentsline {chapter}{\numberline {5}Bibliographical References}{8}{}%
+\contentsline {chapter}{\numberline {6}Sitography}{9}{}%

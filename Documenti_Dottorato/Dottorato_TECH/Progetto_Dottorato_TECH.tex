@@ -1,0 +1,109 @@
+\documentclass{report}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\geometry{a4paper, top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm, heightrounded, bindingoffset=0 mm}
+
+% Title Page
+
+\author{Enrico Brunelli\\715618}
+\title{Performance Analysis of Private 5G Network Infrastructure for Applications in Healthcare Technology}
+\date{}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+\chapter{Paper review}
+Since the first release of the Fifth-generation network by 3GPP, a wide number of studies have already been carried out in order to cover the lacks related to 5G new technology[1]. While up to 4G technology the architecture was hardware-based, which puts the limits on the performance of the network, the 5G technology has been designed according to a service-based aprroach. Like 4G, 5G networks consist in a Radio Access Network (RAN) and a Core Network (CN). The innovation introduced in 5G technology is the possibility of splitting both the 5G RAN, called New Radio (NR), and the CN into different entities that can be also virtualized. Due to the service-based architecture (SBA) the CN is decouples into independent services, called network function (NF), that implement diffent functionalities. Morover, to enable agility and scalability in network deployment and operation, the User Plane and Control Plane Separation strategy was used. While the first one consists of only one NF, called User Plane Function (UPF), the second consists of multiple NFs that cooperate to ensure the network functionality. \\
+The main feature introduces by NR RAN is the possibility of splitting layers of the 3GPP stack into two different logical units, called Central Unit (CU) and Distributed Unit (DU), which can be deployed at separate locations. Morover, the lower part of the physical layer can be separated from the DU in a standalone Radio Unit (RU). This kind of architecture enables the Open RAN approach, also known as Software Defined Radio (SDR), which defines open and standardized interfaces among the elements of the disaggragated RAN and enable to install open-source radio software on Universal Software Radio Peripherals (USRP), like OpenAirInterface (OAI)[2]. \\
+As 5G is moving to cloud-native systems, installing a 5G testbed in a container-based environment is needed. Docker Compose and Kubernetes are two popular container orchestration frameworks that can be used for this scope. For example, the OAI 5G Core Network solution, that is an open-source implementation of the 5G Standalone (SA) CN based on 3GPP, can be deployed in a Docker-based environment using Docker Compose[3]. The container-based techniques and methodologies performed in a cloud-native manner bring significant benefits of virtualization and containerization to 5G applications, supporting better flexibility and scalability. In addition, these kinds of techniques allows deploying the entire system easily using a single configuration file.\\
+The use of 5G open-source project for researchs allows to build a private/lab-scale 5G network system without having expensive radio and end-device equipement [4,5]. The adoption of open-source solutions offers significant cost benefits, eliminating licesing fees and allowing for the use of commercial off-the-shelf hardware (COTS).\\
+In this context, Firecell Labikit is a simple and ready-to-use solution providing private and customized 4G/5G networks with COTS UE. It is based on the containerized deployment of OAI 5G CN and NR. That solution focus on simplicity, flexibility and scalability, providing a Platform for various 5G use cases such as industrial IoT, smart cities, and more.  
+\chapter{Research Project Description}
+The primary objective of this research project is to analyze and evaluate the performance characteristics of a 5G network infrastructure deployed in a controlled laboratory environment. This analysis aims to enhance the understanding of the novel service-based architecture of 5G, which significantly differs from previous generations like 4G, by leveraging tools such as the Firecell Labkit, various User Equipment (UE) including smartphones and Quectel EVB, and other software tools like Wireshark and iPerf.
+\section*{Firecell Labkit:}
+The Firecell labkit is a comprehensive, portable solution designed for creating and testing private 4G and 5G networks. It is particularly aimed at businesses, research institutions, and educational facilities looking to develop, test, and deploy cellular technologies in a controlled environment. It is used to set up a private 5G network, providing the essential infrastructure for deploying and testing 5G connectivity within the laboratory environment. It support the advanced features and capabilities of 5G, such as network slicing and ultra-reliable low-latency communication (URLLC). 
+\section*{Quectel EVB:}
+The Quectel EVB is a development board with a Quectel RM500-GL module to test and analyze 5G New Radio (NR) capabilities. Through the connection of this module via USB is possible connect any kind of devices to the deployed 5G network. In this project, the module will be used to connect a personal computer, which will run some application needed for testing the network, and a Raspberry Pi. This last one is a versatile single-board computer used to simulate various network scenarios, run analysis software, and serve as an additional network node for testing purpose. 
+\section*{Software:}
+Wirershark is a network protocol analyzer used to capure and inspect traffic flowing through the 5G network. It aids in diagnosing network issues, analyzing performance, and understanding the behavior of 5G-specific protocols. 
+\\iPerf is a network performance measurement tool used to generate traffic and measure the bandwith, throughput, and quality of the 5G connection under different conditions. \\
+\section*{First Main Challenge:}
+This research project is critical for advancing the understanding of 5G technology and its infrastructure, which significantly differs from 4G due to its service-based architecture. The service-based approach in 5G enables numerous capabilities such as:
+\begin{itemize}
+	\item \textbf{Network Slicing:} allow multiplle virtual network to be created on a shared physical infrastructure, each tailored to specific applications or services.
+	
+	\item \textbf{Ultra-Reliable Low-Latency Communication (URLLC):} provide highly reliable communication with minimal latency, essential for application like autonomous driving and industrial automation.
+	
+	\item \textbf{Enhanced Mobile Broadband (eMBB):} supports high data rates and improved capacity, catering to bandwidth-intensive applications like streaming and virtual reality. 
+	
+	\item \textbf{Massive Machine-Type Communication (mMTC):} connects a vast number of IoT devices, supporting smart city and smart home applications. 
+\end{itemize}
+Understanding these new capabilities is essential for optimizing network performance and addressing the challenges that come with 5G, such as increased complexity in network management and the need for robust security measures. This study aims to provide detailed insights into these aspects, contributing to the effective deployment and management of 5G networks. This research offers critical perspective on the performance and optimization of 5G networks:
+\begin{itemize}
+	\item \textbf{Enhanced understanding of 5G performance metrics:} detailed insights into key metrics such as data rates latency, jitter, packet loss, and error rates. 
+	\item \textbf{Service-based architecture implications:} Understanding the impact of network slicing URLLC, eMBB, mMTC on network performance. 
+	\item \textbf{Protocol Behavior Analysis:} insights into 5G-specific protocol behaviors, aiding in optimization and troubleshooting.
+	\item \textbf{Optimization strategies:} development of strategies for Optimizing 5G network deployment and management.
+	\item \textbf{Security and reliability insights:} understanding security challenges and enusring the reliability of 5G networks.
+\end{itemize}
+The experimental setup involved deploying a private 5G network using the Firecell Labkit within a controlled laboratory environment. The Firecell Labkit, a comprehensive tool for 5G network deployment, provided the necessary components to simulate real-world 5G infrastructure, including the core network and radio access network (RAN). This setup was crucial for creating a realistic testing environment to evaluate the performance and capabilities of 5G technology.
+Key components of the setup included various User Equipment (UE), such as standard 5G-compatible smartphones and the Quectel EVB RM500-GL module. These devices were selected to represent typical end-user equipment that would connect to the 5G network in real-world scenarios. Additionally, a Raspberry Pi was incorporated as a versatile, low-cost single-board computer, configured to act as a network node for testing purposes.\\
+The methodology was structured to provide a comprehensive analysis of the 5G network's performance under various conditions, leveraging both hardware and software tools to generate and measure network traffic.
+\begin{itemize}
+	\item \textbf{Deployment and Configuration:} The Firecell Labkit was used to establish the 5G network. The core network and RAN were configured to ensure seamless connectivity with the selected UE. The Raspberry Pi was set up with necessary software packages, including Wireshark for network traffic analysis and iPerf for performance testing. The configuration process ensured that all components were correctly integrated and operational, simulating a real-world 5G deployment.
+	\item \textbf{Scenario Creation:} A series of network scenarios were designed to test different aspects of the 5G infrastructure. These scenarios included high-bandwidth data transfers, low-latency communications, mobility and handover situations, and network congestion and load testing. Each scenario was meticulously planned to stress-test specific capabilities and identify potential performance bottlenecks.
+	\item \textbf{Data Collection:} During the execution of each scenario, Wireshark was used to capture network traffic data. This tool provided detailed insights into the protocols and data flows within the 5G network. Simultaneously, iPerf was used to generate network traffic, measuring key performance metrics such as throughput, latency, and jitter. The combination of these tools enabled a comprehensive analysis of the network's behavior under various conditions.
+	\item \textbf{Analysis:} The collected data was analyzed to evaluate the performance of the 5G network. Metrics such as data rates, latency, packet loss, and error rates were scrutinized to assess the network's efficiency and reliability. The analysis focused on understanding how different configurations and scenarios impacted the network's performance, providing insights into potential areas for optimization.
+\end{itemize}
+The experimental setup demonstrated significant potential in several areas. By using the Firecell Labkit to create a realistic 5G environment, the study could closely mimic real-world deployments, providing valuable data on how 5G technology performs under various conditions. The inclusion of diverse UE, such as smartphones and the Quectel module, ensured that the results were applicable to a wide range of devices and use cases. Moreover, the integration of Wireshark and iPerf for data collection and analysis offered a detailed view of network traffic and performance metrics. This approach enabled the identification of specific protocol behaviors and performance characteristics that are unique to 5G, such as the impact of network slicing and the benefits of URLLC and eMBB.\\
+The study's findings open up numerous avenues for future work in healthcare technology:
+\begin{itemize}
+\item \textbf{Remote patient monitoring:} Implement and test remote patient monitoring systems over 5G to evaluate reliability, latency, and data throughput. Analyze how network slicing can provide dedicated, reliable connections for critical health monitoring applications. 
+\item \textbf{Telemedicine:} Explore telemedicine applications, including high-definition video consultations and remote diagnostics, leveraging 5G's high bandwidth and low latency.
+\item \textbf{Wearable Health Devices:} integrate and test wearable health devices that use 5G for real-time data transmission. Analyze data security and privacy implications for wearable devices in a 5G environment.
+\item \textbf{Emergency Response Systems:} Develop emergency response systems that utilize 5G’s URLLC capabilities to ensure rapid and reliable communication. Test scenarios involving real-time coordination and data sharing between healthcare providers and emergency responders.
+\item \textbf{Robotic Surgery:} Conduct feasibility studies and trials of robotic surgery applications requiring ultra-low latency and high reliability. Analyze network requirements and potential challenges in supporting robotic surgical systems over 5G.
+\item \textbf{Health Data Analytics:} Implement health data analytics platforms that leverage 5G’s high data throughput for real-time data collection and analysis. Explore how edge computing in 5G can enhance data processing and analytics capabilities for health applications.
+\item \textbf{Mobile Health Units:} Deploy and test mobile health units equipped with 5G connectivity to provide healthcare services in remote or underserved areas. Analyze the impact of mobile 5G networks on healthcare service accessibility and quality.
+\item \textbf{Augmented and Virtual Reality for Medical Training:} Explore AR and VR applications for medical training and education, utilizing 5G’s high bandwidth and low latency. Test the effectiveness and user experience of AR/VR training tools in a 5G-enabled environment.
+\end{itemize}
+In conclusion, the research on 5G infrastructure using the Firecell Labkit, various UEs, Wireshark, and iPerf provides valuable insights into the performance and capabilities of 5G networks. These insights can drive future work in healthcare technology, enhancing the reliability, efficiency, and security of healthcare applications. The potential improvements in remote monitoring, telemedicine, wearable devices, emergency response, robotic surgery, data analytics, mobile health units, and AR/VR for medical training illustrate the transformative impact that 5G can have on the healthcare industry.
+\section{Expected activity scheduling}
+\begin{itemize}
+	\item \textbf{First Year:} During the first year, the focus is on carry out an in-depth literature review in order to have a complete vision of the state of the art and the results obtained in other research projects conducted on 5G infrastructures. Initial training sessions are conducted, and all necessary software is installed to ensure everything is operational. Baseline performance tests are carried out to measure throughput, latency, and reliability, establishing benchmarks for future experiments. Detailed analysis of individual components, such as gNodeB and EPC, is performed to understand their performance and interaction within the network. By the end of the year, the findings are compiled into a comprehensive report, and knowledge is shared through workshops and seminars with stakeholders and other research teams.
+	\item \textbf{Second Year:} In the second year, the research shifts towards designing and implementing testbed scenarios based on the insights gained in the first year. Specific variables like mobility, handovers, and edge computing integration are identified for testing. The testbed environment is set up with configurations tailored to these scenarios, ensuring all components are properly integrated. Extensive experiments are conducted to evaluate network performance under various loads, collecting data on latency, throughput, and reliability. Advanced features such as network slicing, massive MIMO, and beamforming are also tested. The collected data is analyzed and compared with the benchmarks established in the previous year. The results are documented in comprehensive reports, which are shared through interim reports and presentations.
+	\item \textbf{Third Year:} The third year focuses on developing and testing real-world applications based on the testbed results. Potential applications, such as smart city solutions, industrial automation, and telemedicine, are brainstormed and prioritized based on their impact and feasibility. Prototypes for the selected applications are developed, ensuring they are compatible with the 5G infrastructure. These prototypes are then deployed in controlled real-world environments for pilot testing. Throughout this phase, performance is monitored, feedback is collected, and necessary adjustments are made. By the end of the year, the research culminates in the successful deployment of real-world applications, with findings summarized in a final report. These results are presented at conferences, published in academic papers, and demonstrated to industry partners.
+\end{itemize}
+\chapter{Bibliographical References}
+\begin{itemize}
+	\item[1.] Linh-An Phan; Dirk Pesch; Utz Roedig; Cormac J. Sreenan. "Building a 5G Core Network Testbed: Open-Source Solutions, Lessons Learned, and Research Directions", 10.1109/ICON59985.2024.10572091.
+\item[2.] Florian Kaltenberger; Aloizio P. Silva; Abhimanyu Gosain; Luhan Wang. "OpenAirInterface: Democratizing innovation in the 5G Era", Computer Networks 176 (2020) 107284.
+\item[3.] Larisa-Mihaela Tufeanu; Alexandru Martian; Marius-Constantin Vochin; Constantin-Laurentiu Paraschiv; Frank Y. Li. "Building an Open Source Containerized 5G SA Network through Docker and Kubernetes", 10.1109/WPMC55625.2022.10014753.
+\item[4.] Sachinkumar Bavikatti Mallikarjun; Christian Schellenberger; Christopher Hobelsberger; Hans D. Schotten. "Performance Analysis of a Private 5G SA Campus Network", ISBN 978-3-8007-5873-9.
+\item[5.] Arash Sahbafard; Robert Schmidt; Florian Kaltenberger; Andreas Springer; Hans-Peter Bernhard. "On the Performance of an Indoor Open-Source 5G Standalone Deplyment", 10.1109/WCNC55385.2023.10118776.
+\item[6.] Markus Peterhansl. "Remote Control of a Collaborative Robot with Virtual Reality and Joystick in a 5G Network", 10.1109/ACIT58437.2023.10275571.
+\item[7.] Sookhyun Jeon; JaeSeung Song; Younghyun Kim; Ji-Myong Kim. "An Analysis of Network Performance Requirements for Industrial IoT Services based on 5G Non-Public Network in Smart Energy",\\ 10.1109/ICT58733.2023.10393610.
+\item[8.] Yosra Ben Slimen; Joanna Balcerzak; Albert Pagès; Fernando Agraz; Salvatore Spadaro;
+Konstantinos Koutsopoulos; Mustafa Al-Bado; Thuy Truong; Pietro G. Giardina; Giacomo Bernini. "Quality of perception prediction in 5G slices for e-Health services using user-perceived QoS", Computer Communications 178 (2021) 1–13.
+\item[9.] Jean Nestor M. Dahj; Kingsley A. Ogudo; Leandro Boonzaaier. "A hybrid analytical concept to QoE index evaluation: Enhancing eMBB service detection in 5G SA networks", Journal of Network and Computer Application 221 (2024) 103765.
+\item[10.] Jean Nestor M. Dahj; Kingsley A. Ogudo; Leandro Boonzaaier. "A hybrid analytical concept to QoE index evaluation: Enhancing eMBB service detection in 5G SA networks", Journal of Network and Computer Application 221 (2024) 103765.
+\item[11.] Matthew Boeding; Paul Scalise; Michael Hempel; Hamid Sharif; Juan Lopez, Jr.Toward. "Wireless Smart Grid Communications: An Evaluation of Protocol Latencies in an Open-Source 5G Testbed", Energies 2024, 17, 373.
+\item[12.] Priyal Thakkar; Shashvat Sanadhya; Pimmy Gandotra; Brejesh Lall. "A 5G OpenAirInterface (OAI) Testbed with MEC: Deployment, Application testing and Slicing Support", 10.1109/COMSNETS56262.2023.10041332.
+\item[13.] Florian Volk; Robert T. Schwarz; Andreas Knopp. "In-Lab Performance Analysis of a 5G Non-Terrestrial Network using OpenAirInterface", 10.1109/WiSEE58383.2023.10289494.
+Rekha Reddy; Michael Gundall; Cristoph Lipps; Hans Dieter \item[14.] Rekha Reddy; Michael Gundall; Cristoph Lipps; Hans Dieter Schotten. "Open Source 5G Core Network Implementations: A Qualitative and Quantitative Analysis", 10.1109/BLACKSEACOM58138.2023.10299755.
+\item[15.] Tsvetan Zhivkov; Elizabeth I. Sklar; Duncan Botting; Simon Pearson. "5G on the Farm: Evaluating Wireless Network Capabilities and Needs for Agricultural Robotics", Machines 2023, 11, 1064.
+\end{itemize}
+\chapter{Sitography}
+\begin{itemize}
+	\item[1.] https://openairinterface.org/
+	\item[2.] https://docs.firecell.io/
+	\item[3.] https://www.3gpp.org/
+\end{itemize}
+\end{document}
