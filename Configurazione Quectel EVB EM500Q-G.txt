@@ -62,7 +62,7 @@ Ora prova del collegamento dei vari moduli tramite monitoraggio con tshark e doc
 
 --> comando: while true; do docker stats --no-stream >> utilizzo_container.log; sleep 5; done
 
---> tshark: tshark -i enp5s0 -w cattura_rete.pcapS
+--> tshark: tshark -i enp5s0 -w cattura_rete.pcaps
 ____________________________________________________________________________________________________________________
 
 Test 19/11/2024
