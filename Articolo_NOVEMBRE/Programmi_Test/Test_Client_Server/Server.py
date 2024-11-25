@@ -24,7 +24,8 @@ def get_ntp_timestamp(ntp_client): # ntp_client: oggetto per
     try:
         response = ntp_client.request(server, version=3,
                                       timeout=1)
-        response=response.tx_time
+        time=response.tx_time
+        delay=response.delay
     except Exception as e:
         print(f"Errore nella connessione:{e}")
         response = 0
@@ -48,12 +49,12 @@ def handle_tcp_connection(server_socket,client_address,ntp_client,file):
                 break
             print(f"Messaggio ricevuto: {data.decode()}")
             # Ottieni il timestamp NTP attuale
-            server_recv_timestamp = get_ntp_timestamp(ntp_client)
+            server_recv_timestamp, delay1 = get_ntp_timestamp(ntp_client)
             # Risponde al client con il timestamp del server
-            server_send_timestamp = get_ntp_timestamp(ntp_client)
+            server_send_timestamp, delay2 = get_ntp_timestamp(ntp_client)
             server_socket.sendto(str(server_send_timestamp).encode(), client_address)
             print(f"Messaggio mandato: {str(server_send_timestamp)}")
-            file.write('TCP'+','+str(server_send_timestamp)+','+str(server_recv_timestamp)+'\n')
+            file.write('TCP'+','+str(server_send_timestamp)+','+str(delay1)+','+str(server_recv_timestamp)+','+str(delay2)+'\n')
     except Exception as e:
         print(f"Errore nella connessione TCP: {e}")
     finally:

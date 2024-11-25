@@ -23,11 +23,13 @@ def get_ntp_timestamp(ntp_client): # ntp_client: oggetto per
     try:
         response = ntp_client.request(server, version=3,
                                       timeout=1)
-        response = response.tx_time
+        time = response.tx_time
+        delay = response.delay
     except Exception as e:
         print(f"Errore nella connessione:{e}")
-        response = 0
-    return response 
+        time = 0
+        delay = 0
+    return time, delay 
 #___________________________________________________________    
 # Funzione che implementa il test tramite connessione TCP
 def test_tcp(client_socket,ntp_client,file,traffic):
@@ -37,7 +39,7 @@ def test_tcp(client_socket,ntp_client,file,traffic):
                       # pari a quella del pacchetto di 
                       # risposta del server NTP per 
                       # mantenere la coerenza
-    client_send_timestamp = get_ntp_timestamp(ntp_client)
+    client_send_timestamp, delay1 = get_ntp_timestamp(ntp_client)
     if client_send_timestamp != 0: # Se la richiesta al 
                                    # al server è andata a
                                    # buon fine
@@ -46,8 +48,8 @@ def test_tcp(client_socket,ntp_client,file,traffic):
         try:
             client_socket.sendall(message.encode('utf-8'))
             response = client_socket.recv(1024)
-            client_recv_timestamp = get_ntp_timestamp(ntp_client)
-            file.write('TCP'+','+traffic+','+str(client_send_timestamp.tx_time)+','+str(client_recv_timestamp.tx_time)+'\n')
+            client_recv_timestamp, delay2 = get_ntp_timestamp(ntp_client)
+            file.write('TCP'+','+traffic+','+str(client_send_timestamp)+','+str(delay1)+','+str(client_recv_timestamp.tx_time)+','+str(delay2)+'\n')
         except Exception as e:
             print(f"Errore nella connessione:{e}")
 
@@ -107,7 +109,7 @@ def run_test_cycle(host, tcp_port, udp_port,traffic):
     filecsv="istanti_temporali_"+data_stringa+".csv"
     file=open(filecsv,"a")
     if file.tell()==0:
-        file.write("Protocollo,Traffico,client_send_timestamp,client_recv_timestamp\n")
+        file.write("Protocollo,Traffico,client_send_timestamp,delay_send,client_recv_timestamp,delay_recv\n")
         print("File csv creato.")
     while True:
         print("\nSeleziona un test da eseguire:")
