@@ -79,7 +79,7 @@ def tcp_server(host, port):
     filecsv="server_istanti_temporali_"+data_stringa+".csv"
     file=open(filecsv,"a")
     if file.tell()==0:
-        file.write("server_send_timestamp,server_recv_timestamp\n")
+        file.write("Tipo,server_send_timestamp,delay_send,server_recv_timestamp,delay_recv\n")
         print("File csv creato.")
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind((host, port))
