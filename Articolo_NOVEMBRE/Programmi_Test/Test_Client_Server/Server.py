@@ -29,7 +29,7 @@ def get_ntp_timestamp(ntp_client): # ntp_client: oggetto per
     except Exception as e:
         print(f"Errore nella connessione:{e}")
         response = 0
-    return response 
+    return time, delay 
 #___________________________________________________________
 # Funzione per la gestione della connessione TCP
 def handle_tcp_connection(server_socket,client_address,ntp_client,file):

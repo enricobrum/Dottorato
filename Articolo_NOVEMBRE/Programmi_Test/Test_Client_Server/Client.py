@@ -49,7 +49,7 @@ def test_tcp(client_socket,ntp_client,file,traffic):
             client_socket.sendall(message.encode('utf-8'))
             response = client_socket.recv(1024)
             client_recv_timestamp, delay2 = get_ntp_timestamp(ntp_client)
-            file.write('TCP'+','+traffic+','+str(client_send_timestamp)+','+str(delay1)+','+str(client_recv_timestamp.tx_time)+','+str(delay2)+'\n')
+            file.write('TCP'+','+traffic+','+str(client_send_timestamp)+','+str(delay1)+','+str(client_recv_timestamp)+','+str(delay2)+'\n')
         except Exception as e:
             print(f"Errore nella connessione:{e}")
 
@@ -102,7 +102,7 @@ def run_test_cycle(host, tcp_port, udp_port,traffic):
         udp_port (int): Porta del server UDP.
         traffic (str): Scenario di traffico del test corrente
     """
-    n_test=3000
+    n_test=5
     ntp_client =ntplib.NTPClient()
     data_corrente = datetime.now()
     data_stringa = data_corrente.strftime("%Y-%m-%d")
